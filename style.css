@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  position: relative;
+  top: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#canvas1 {
+  background-image: url("stars.png");
+  width: 900px;
+}
