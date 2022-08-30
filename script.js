@@ -2,7 +2,7 @@ const canvas = document.getElementById("canvas1");
 const ctx = canvas.getContext("2d");
 const CANVAS_WIDTH = (canvas.width = 600);
 const CANVAS_HEIGHT = (canvas.height = 300);
-
+let speed = 6;
 class Space {
   constructor() {
     this.image = new Image();
@@ -32,9 +32,20 @@ class Ship {
   }
   draw() {
     ctx.drawImage(this.image, this.x * this.speed, this.y, 120, 120);
-    if (this.x >= 300) {
-      this.x = 0;
+    if (this.x >= 252) {
+      this.x -= 1;
     }
+    if (this.x <= -4) {
+      this.x += 1;
+    }
+    if (this.y >= 180) {
+      this.y -= 1;
+    }
+    if (this.y <= -2) {
+      this.y += 1;
+    }
+
+    console.log(this.y);
   }
 }
 const space = new Space();
@@ -52,19 +63,21 @@ addEventListener("keydown", control);
 
 function control(e) {
   if (e.keyCode === 39) {
-    console.log("right pressed");
-    ship.x += 3;
+    // console.log("right pressed");
+    ship.x += speed;
     ship.image.src = "rocket.png";
   } else if (e.keyCode === 38) {
-    console.log("up pressed");
-    ship.y -= 3;
+    // console.log("up pressed");
+    ship.y -= speed;
+    ship.image.src = "rocket-up.png";
   } else if (e.keyCode === 37) {
-    ship.x -= 3;
+    ship.x -= speed;
     ship.image.src = "rocket2.png";
-    console.log("left pressed");
+    // console.log("left pressed");
   } else if (e.keyCode === 40) {
-    ship.y += 3;
-    console.log("down pressed");
+    ship.y += speed;
+    ship.image.src = "rocket-down.png";
+    // console.log("down pressed");
   }
 }
 
